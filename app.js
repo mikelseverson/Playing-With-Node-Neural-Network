@@ -55,4 +55,4 @@ for (var i = 0; i < 20000; i++)
 console.log(myNetwork.activate([0,0])); // [ 0.00006256959329031066 ]
 console.log(myNetwork.activate([0,1])); // [ 0.9995991812402573 ]
 console.log(myNetwork.activate([1,0])); // [ 0.9995991812402573 ]
-console.log(myNetwork.activate([1,1])); // [ 0.9995991812402573 ]
+console.log(myNetwork.activate([1,1])); // [ 0.0000991812402573 ]
