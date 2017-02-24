@@ -2,28 +2,28 @@ const express    = require('express'),
       synaptic   = require('synaptic'),
       path       = require('path'),
       bodyParser = require('body-parser'),
-      port       = 3000,
+      PORT       = 3000,
       app        = express();
 
-var inputLayer = new synaptic.Layer(2);
+var inputLayer  = new synaptic.Layer(2);
 var hiddenLayer = new synaptic.Layer(3);
 var outputLayer = new synaptic.Layer(1);
+
 inputLayer.project(hiddenLayer);
 hiddenLayer.project(outputLayer);
 
 /* Server */
-// Middlewear
+// Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // Endpoints
 app.get('/', (req, res) => { res.sendFile(path.join(__dirname, './index.html')); });
 app.post('/train-network', (req, res) => {  res.send('Not Implemented');  });
 app.post('/input', (req, res) => {  res.send(myNetwork.activate(req.body.data)); });
-app.get('/*', (req, res) => { res.send('404'); })
+app.get('/*', (req, res) => { res.status(404).send('Not found'); })
 // Listen
-app.listen(port, () => { console.info('app is listening on port: ' + port); });
+app.listen(PORT, () => { console.log('app is listening on port: ' + PORT); });
 /* End Server */
-
 
 // Initialize Nerwork
 var myNetwork = new synaptic.Network({
@@ -34,8 +34,7 @@ var myNetwork = new synaptic.Network({
 
 // Train the network
 var learningRate = .3;
-for (var i = 0; i < 20000; i++)
-{
+for (var i = 0; i < 20000; i++){
     //Training XOR Neural Network
     // 0,0 => 0
     myNetwork.activate([0,0]);
